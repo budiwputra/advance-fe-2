@@ -25,11 +25,8 @@ export const useProduct = () => {
             const response = await api.post("/products", data)
             const created = response.data
             setProduct((prev) => [created, ...prev])
-
-
         } catch (error) {
             console.log(error.response)
-
         } finally {
 
         }
@@ -40,11 +37,8 @@ export const useProduct = () => {
             const response = await api.put(`/products/${id}`, data)
             const updated = response.data
             setProduct((prev) => prev.map(item => item.id === id ? {...item, ...updated} : item))
-
-
         } catch (error) {
             console.log(error.response)
-
         } finally {
 
         }
@@ -54,11 +48,8 @@ export const useProduct = () => {
         try {
             await api.delete(`/products/${id}`)
             setProduct((prev) => prev.filter(item => item.id !== id))
-
-
         } catch (error) {
             console.log(error.response)
-
         } finally {
 
         }

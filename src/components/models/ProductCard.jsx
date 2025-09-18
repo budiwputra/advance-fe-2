@@ -13,27 +13,22 @@ const Card = () => {
     const navigate = useNavigate()
     const {images, avatar} = useImages()
     const {product, isLoading, isError, getProduct , deleteProduct} = useProduct()
-
     useEffect(() => {
         getProduct()
     }, [])
-
     return (
-
         <div className='flex flex-col gap-[12px] w-full'>
             {isLoading && 
             <div className='flex justify-center'>
                 <p>Loading...</p>
             </div>          
             }
-
             {isError && (
                 <div className='flex flex-col justify-center items-center'>
                     <p>Error</p>
                     <button className='border' onClick={()=> getProduct()}>Reload</button>
                 </div>)
             }
-
             {(!isLoading && !isError) && (
                 <div>
                     <div className='flex flex-row justify-between gap-[12px]'>
@@ -102,7 +97,5 @@ const Card = () => {
             ) 
             }
         </div>
-
-    )
-}
+    )}
 export default Card

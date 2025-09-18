@@ -4,7 +4,6 @@ import InputText from "../components/elements/InputText"
 import BodyRegular from "../components/elements/BodyRegular"
 import Button from "../components/elements/Button"
 import SelectOption from "../components/elements/SelectOption"
-import SecondaryButton from "../components/elements/SecondaryButton"
 import TextArea from "../components/elements/TextArea"
 import { useProduct } from "../hooks/useProduct"
 
@@ -12,9 +11,7 @@ const EntryProduct = ({isUpdate}) => {
     const navigate = useNavigate()
     const {id} = useParams()
     const formRef = useRef(null)
-
     const {product, addProduct, updateProduct} = useProduct()
-
     const optionCategory = [
     {
     label : "Pemasaran",
@@ -36,9 +33,6 @@ const EntryProduct = ({isUpdate}) => {
     label : "Digital & Teknologi",
     value : "Digital & Teknologi"    
     }]
-
-    console.log("Params", id)
-
     useEffect(() => {
         if (isUpdate && product.length  > 0 ) {
             const productItem = product.find(item => item.id === id)
@@ -53,7 +47,6 @@ const EntryProduct = ({isUpdate}) => {
             formRef.current.price.value = productItem.price
         } 
     },[isUpdate, product, id])
-
     return (
         <div className="h-full p-[36px]">
             <div className="h-full rounded-sm p-[36px]">
@@ -98,7 +91,6 @@ const EntryProduct = ({isUpdate}) => {
                 </div>
             </div>
         </div>
-    )
-}
+    )}
 
 export default EntryProduct
