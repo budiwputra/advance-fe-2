@@ -24,8 +24,10 @@ const ReduxEntry = ({isUpdate}) => {
             formRef.current.category.value = productItem.category,
             formRef.current.desc.value = productItem.desc,
             formRef.current.price.value = productItem.price
+        } else {
+            if (formRef.current) formRef.current.reset()
         }
-    }, [])
+    }, [isUpdate, id, products])
 
     const optionCategory = [
     {

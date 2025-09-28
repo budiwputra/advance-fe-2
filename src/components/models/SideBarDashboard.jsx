@@ -28,7 +28,7 @@ const SideBarDashboard = () => {
                 </ButtonMenu>
                 {openMenu === "productRedux" && (
                     <div>                      
-                        <ButtonMenu onClick={() => {navigate('redux-entry')}} className="w-full text-left py-[16px] px-[36px]
+                        <ButtonMenu onClick={() => {navigate('redux-entry', {state:{isUpdate:false}} )}} className=" w-full text-left py-[16px] px-[36px]
                         hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 2]Product Entry</ButtonMenu>
                         <ButtonMenu onClick={() => {navigate('redux-list')}} className="block w-full text-left py-[16px] px-[36px] 
                         hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 2]Product List </ButtonMenu>
@@ -42,7 +42,7 @@ const SideBarDashboard = () => {
                 </ButtonMenu>
                 {openMenu === "productApi" && (
                     <div>                      
-                        <ButtonMenu onClick={() => {navigate('entry-product')}} className="w-full text-left py-[16px] px-[36px]
+                        <ButtonMenu onClick={() => {navigate('entry-product', {state:{isUpdate:false}} )}} className="w-full text-left py-[16px] px-[36px]
                         hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 1]Product Entry</ButtonMenu>
                         <ButtonMenu onClick={() => {navigate('list-product')}} className="block w-full text-left py-[16px] px-[36px] 
                         hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 1]Product List</ButtonMenu>
