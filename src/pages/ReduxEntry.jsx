@@ -1,13 +1,13 @@
 import { useNavigate, useParams } from "react-router"
 import { useEffect, useRef } from "react"
-import { getData, createData, updateData} from "../store/redux/productReducer"
-import { useSelector, useDispatch } from "react-redux"
-
 import Button from "../components/elements/Button"
 import BodyRegular from "../components/elements/BodyRegular"
 import InputText from "../components/elements/InputText"
 import SelectOption from "../components/elements/SelectOption"
 import TextArea from "../components/elements/TextArea"
+
+import { createData, updateData} from "../store/redux/productReducer"
+import { useSelector, useDispatch } from "react-redux"
 
 const ReduxEntry = ({isUpdate}) => {
     const {id} = useParams()
@@ -15,7 +15,7 @@ const ReduxEntry = ({isUpdate}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {value : products, isLoading, isError} = useSelector((state) => state.products)
+    const {value : products} = useSelector((state) => state.products)
 
     useEffect(() => {
         if (isUpdate) {

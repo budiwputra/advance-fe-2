@@ -7,15 +7,17 @@ import { useNavigate} from 'react-router'
 import { useImages } from "../../store/images.js"
 import Button from '../elements/Button.jsx'
 import SecondaryButton from '../elements/SecondaryButton.jsx'
-import { useDispatch, useSelector } from 'react-redux'
 import { useEffect } from 'react'
+
+import { useDispatch, useSelector } from 'react-redux'
 import { getData, deleteData } from '../../store/redux/productReducer.js'
 
 const Card = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
     const {images, avatar} = useImages()
-    const {value : products, isLoading, isError} = useSelector((state) => state.products)
+    const {value : products, isLoading, isError} = 
+    useSelector((state) => state.products)
 
     useEffect(() => {
         dispatch(getData())   

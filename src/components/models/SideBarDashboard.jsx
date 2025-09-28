@@ -21,31 +21,31 @@ const SideBarDashboard = () => {
 
             <div className='flex flex-col'>
 
-                <ButtonMenu onClick={ () => toggleMenu("productRedux") } className="w-full text-left py-[16px] pl-[36px] pr-[16px] hover:bg-secondary 
-                flex justify-between">Redux Product <span>{openMenu === "productRedux" ? 
+                <ButtonMenu onClick={ () => toggleMenu("productRedux") } className={`w-full text-left py-[16px] pl-[36px] pr-[16px] ${openMenu === "productRedux" ? "bg-secondary-sidebar" : "hover:bg-secondary-sidebar"} 
+                flex justify-between`}>Advanced FE 2<span>{openMenu === "productRedux" ? 
                 <img src={upLogo} alt="Up" /> : 
                 <img src={bottomLogo} alt="Down" />}</span>                 
                 </ButtonMenu>
                 {openMenu === "productRedux" && (
                     <div>                      
-                        <ButtonMenu onClick={() => {navigate('redux-entry')}} className="hidden w-full text-left py-[16px] px-[36px]
-                        hover:bg-secondary bg-secondary-80">Product Entry</ButtonMenu>
+                        <ButtonMenu onClick={() => {navigate('redux-entry')}} className="w-full text-left py-[16px] px-[36px]
+                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 2]Product Entry</ButtonMenu>
                         <ButtonMenu onClick={() => {navigate('redux-list')}} className="block w-full text-left py-[16px] px-[36px] 
-                        hover:bg-secondary bg-secondary-80">Product List</ButtonMenu>
+                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 2]Product List </ButtonMenu>
                     </div>
                 )}
 
-                <ButtonMenu onClick={ () => toggleMenu("productApi") } className="hidden w-full text-left py-[16px] pl-[36px] pr-[16px] hover:bg-secondary 
-                flex justify-between">API Product <span>{openMenu === "productApi" ? 
+                <ButtonMenu onClick={() => toggleMenu("productApi") } className={`w-full text-left py-[16px] pl-[36px] pr-[16px] ${openMenu === "productApi" ? "bg-secondary-sidebar" : "hover:bg-secondary-sidebar"} 
+                flex justify-between`}>Advanced FE 1<span>{openMenu === "productApi" ? 
                 <img src={upLogo} alt="Up" /> : 
                 <img src={bottomLogo} alt="Down" />}</span>                 
                 </ButtonMenu>
                 {openMenu === "productApi" && (
                     <div>                      
-                        <ButtonMenu onClick={() => {navigate('entry-product')}} className="hidden w-full text-left py-[16px] px-[36px]
-                        hover:bg-secondary bg-secondary-80">Product Entry</ButtonMenu>
+                        <ButtonMenu onClick={() => {navigate('entry-product')}} className="w-full text-left py-[16px] px-[36px]
+                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 1]Product Entry</ButtonMenu>
                         <ButtonMenu onClick={() => {navigate('list-product')}} className="block w-full text-left py-[16px] px-[36px] 
-                        hover:bg-secondary bg-secondary-80">Product List</ButtonMenu>
+                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 1]Product List</ButtonMenu>
                     </div>
                 )}
 
