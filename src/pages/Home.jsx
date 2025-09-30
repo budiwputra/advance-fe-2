@@ -12,17 +12,18 @@ import useProductStore from "../store/useProductStore.js"
 import BodyLarge from "../components/elements/BodyLarge.jsx"
 import ratings from "../assets/ratings.png"
 import { useImages } from "../store/images.js"
+import { useSelector, useDispatch } from "react-redux"
 
 const App = () => {
   const {images, avatar} = useImages()
   const [selectedCategory, setSelectedCategory] = useState("Semua Kelas")
-  const product = useProductStore( (state) => state.product )
-  const categories = ["Semua Kelas", ...new Set(product.map((item) => item.category))]
+  const {value : products } = useSelector((state) => state.products)
+  const categories = ["Semua Kelas", ...new Set(products.map((item) => item.category))]
   
   const filteredProducts =
   selectedCategory === "Semua Kelas"
-  ? product
-  : product.filter((item) => item.category === selectedCategory)
+  ? products
+  : products.filter((item) => item.category === selectedCategory)
   
   return (
     <div className="flex flex-col w-full min-h-full justify-start items-center 
