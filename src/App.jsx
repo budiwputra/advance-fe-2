@@ -12,6 +12,8 @@ import AuthLayout from './layouts/AuthLayout.jsx'
 import Text from './pages/Text.jsx'
 import ListProduct from './pages/ListProduct.jsx'
 import EntryProduct from './pages/EntryProduct.jsx'
+import ReduxList from './pages/ReduxList.jsx'
+import ReduxEntry from './pages/ReduxEntry.jsx'
 
 const App = () => {
     return (
@@ -37,6 +39,11 @@ const App = () => {
             <Route path='list-product' element={<ListProduct/>}/>
             <Route path='entry-product' element={<EntryProduct/>}/>
             <Route path='update-product/:id' element={<EntryProduct isUpdate/>}/>
+
+            <Route path='redux-list' element={<ReduxList/>}/>
+            <Route path='redux-entry' element={<ReduxEntry/>} />
+            <Route path='redux-update/:id' element={<ReduxEntry isUpdate/>} />
+
             </Route>
 
             <Route path='/text' element={<Text/>}/>

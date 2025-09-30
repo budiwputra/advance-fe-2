@@ -1,43 +1,25 @@
 import { useNavigate, useParams } from "react-router"
-import { useRef, useEffect } from "react"
-import InputText from "../components/elements/InputText"
-import BodyRegular from "../components/elements/BodyRegular"
+import { useEffect, useRef } from "react"
 import Button from "../components/elements/Button"
+import BodyRegular from "../components/elements/BodyRegular"
+import InputText from "../components/elements/InputText"
 import SelectOption from "../components/elements/SelectOption"
 import TextArea from "../components/elements/TextArea"
-import { useProduct } from "../hooks/useProduct"
 
-const EntryProduct = ({isUpdate}) => {
+import { createData, updateData} from "../store/redux/productReducer"
+import { useSelector, useDispatch } from "react-redux"
+
+const ReduxEntry = ({isUpdate}) => {
     const {id} = useParams()
-    const formRef = useRef(null)
-    
-    const {product, addProduct, updateProduct} = useProduct()
+    const formRef = useRef()
     const navigate = useNavigate()
-    
-    const optionCategory = [
-    {
-    label : "Pemasaran",
-    value : "Pemasaran"    
-    }, 
-    {
-    label : "Desain Grafis",
-    value : "Desain Grafis"    
-    }, 
-    {
-    label : "Pengembangan Diri",
-    value : "Pengembangan Diri"    
-    }, 
-    {
-    label : "Bisnis Manajemen",
-    value : "Bisnis Manajemen"    
-    }, 
-    {
-    label : "Digital & Teknologi",
-    value : "Digital & Teknologi"    
-    }]
+    const dispatch = useDispatch()
+
+    const {value : products} = useSelector((state) => state.products)
+
     useEffect(() => {
-        if (isUpdate && product.length  > 0 ) {
-            const productItem = product.find(item => item.id === id)
+        if (isUpdate) {
+            const productItem = products.find(item => item.id === id)
             formRef.current.title.value = productItem.title,
             formRef.current.category.value = productItem.category,
             formRef.current.desc.value = productItem.desc,
@@ -45,8 +27,32 @@ const EntryProduct = ({isUpdate}) => {
         } else {
             if (formRef.current) formRef.current.reset()
         }
-    },[isUpdate, product, id])
+    }, [isUpdate, id, products])
+
+    const optionCategory = [
+    {
+        label : "Pemasaran",
+        value : "Pemasaran"
+    },
+    {
+        label : "Desain Grafis",
+        value : "Desain Grafis"
+    },
+    {
+        label : "Pengembangan Diri",
+        value : "Pengembangan Diri"
+    },
+    {
+        label : "Bisnis Manajemen",
+        value : "Bisnis Manajemen"
+    },
+    {
+        label : "Digital & Teknologi",
+        value : "Digital & Teknologi"
+    }]
+
     return (
+
         <div className="h-full p-[36px]">
             <div className="h-full rounded-sm p-[36px]">
                 <div className="sm:w-[590px] flex flex-col gap-[20px]">
@@ -54,22 +60,21 @@ const EntryProduct = ({isUpdate}) => {
                     onSubmit={(e) => {
                         e.preventDefault()
                         if (isUpdate) {
-                            updateProduct(id,  {
+                            dispatch(updateData({id, payload : {
                                 title : e.target.title.value,
                                 category : e.target.category.value,
                                 desc : e.target.desc.value,
                                 price : e.target.price.value
-                            })
+                            }}))
                         } else {
-                            addProduct({
+                            dispatch(createData({
                                 title : e.target.title.value,
                                 category : e.target.category.value,
                                 desc : e.target.desc.value,
                                 price : e.target.price.value
-                            })                          
+                            }))                     
                         }
-                        navigate("/dashboard/list-product")
-                        e.target.reset()
+                        navigate("/dashboard/redux-list")
                     }}
                     >
                         <BodyRegular>Title</BodyRegular>
@@ -89,6 +94,7 @@ const EntryProduct = ({isUpdate}) => {
                 </div>
             </div>
         </div>
-    )}
+    )
+}
 
-export default EntryProduct
+export default ReduxEntry
