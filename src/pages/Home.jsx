@@ -7,27 +7,33 @@ import HeadingBold from "../components/elements/HeadingBold.jsx"
 import NavBar from "../components/models/NavBar.jsx"
 import SecondaryButton from "../components/elements/SecondaryButton.jsx"
 import '../App.css'
-import { useState } from "react"
-import useProductStore from "../store/useProductStore.js"
+import { useEffect, useState } from "react"
 import BodyLarge from "../components/elements/BodyLarge.jsx"
 import ratings from "../assets/ratings.png"
 import { useImages } from "../store/images.js"
 import { useSelector, useDispatch } from "react-redux"
+import {getData} from '../store/redux/productReducer.js'
 
 const App = () => {
+  const dispatch = useDispatch()
   const {images, avatar} = useImages()
   const [selectedCategory, setSelectedCategory] = useState("Semua Kelas")
-  const {value : products } = useSelector((state) => state.products)
+  const {value : products, isLoading, isError } = useSelector((state) => state.products)
   const categories = ["Semua Kelas", ...new Set(products.map((item) => item.category))]
   
   const filteredProducts =
   selectedCategory === "Semua Kelas"
   ? products
   : products.filter((item) => item.category === selectedCategory)
+
+  useEffect(() => {
+    dispatch(getData())
+
+  },[dispatch])
   
   return (
     <div className="flex flex-col w-full min-h-full justify-start items-center 
-    px-[20px] py-[28px] gap-[24px] sm:gap-[64px] sm:px-[120px] sm:py-[64px] bg-background" >
+    px-[20px] py-[28px] gap-[24px] sm:gap-[64px] sm:px-[120px] sm:py-[64px] bg-background"  >
       <div className="bg-[url('/assets/bgHero.jpg')] rounded-[10px] bg-cover bg-center bg-no-repeat">
       <div className="border border-black/80 rounded-[10px] flex flex-col 
       justify-center items-center px-[20px] py-[37px] w-full 
@@ -41,7 +47,7 @@ const App = () => {
         <Button className="w-fit font-normal sm:font-bold py-[10px] px-[8px] sm:px-[16px] mt-[12px]">Temukan Video Course untuk Dipelajari!</Button>
       </div>
       </div>
-      <div className="flex flex-col w-full gap-[32px] ">
+      <div className="flex flex-col w-full gap-[32px]">
         <div className="flex flex-col w-full gap-[10px]">
         <HeadingSemiBold className="text-left">Koleksi Video Pembelajaran Unggulan</HeadingSemiBold>
         <BodyMedium className="text-left text-dark-secondary text-sm sm:text-base">Jelajahi Dunia Pengetahuan Melalui Pilihan Kami!</BodyMedium>
@@ -61,6 +67,22 @@ const App = () => {
           </NavBar>
         </div>
 
+        { isLoading && (
+        <div className="flex justify-center">
+          <p>Loading...</p>
+        </div>)
+        }
+
+        {
+          isError && (
+        <div className="flex flex-col justify-center items-center">
+          <p>Error</p>
+          <button className="border p-1 cursor-pointer" onClick={() => getData()}>Reload</button>
+        </div>)
+        }
+
+        {
+          (!isLoading && !isError) && (
         <div className="w-full">
         <div className='flex flex-col items-center justify-center w-full gap-[20px] sm:gap-[24px] 
         sm:grid sm:grid-cols-[auto_auto] lg:grid-cols-[auto_auto_auto] 2xl:grid-cols-[auto_auto_auto_auto] '>
@@ -111,8 +133,10 @@ const App = () => {
           )
         })}       
         </div>
-        </div>  
-
+        </div>           
+          )
+        }
+        
       </div>
       <div className="bg-[url('/assets/bgFooter.jpg')] bg-cover bg-center bg-no-repeat rounded-sm w-full ">
         <div className="border border-black/80 bg-black/80 rounded-sm text-base sm:text-[18px] flex-col flex items-center justify-center
