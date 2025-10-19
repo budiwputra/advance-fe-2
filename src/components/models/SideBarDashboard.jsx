@@ -22,20 +22,20 @@ const SideBarDashboard = () => {
             <div className='flex flex-col'>
 
                 <ButtonMenu onClick={ () => toggleMenu("productRedux") } className={`w-full text-left py-[16px] pl-[36px] pr-[16px] ${openMenu === "productRedux" ? "bg-secondary-sidebar" : "hover:bg-secondary-sidebar"} 
-                flex justify-between`}>Advanced FE 2<span>{openMenu === "productRedux" ? 
+                flex justify-between`}>Product<span>{openMenu === "productRedux" ? 
                 <img src={upLogo} alt="Up" /> : 
                 <img src={bottomLogo} alt="Down" />}</span>                 
                 </ButtonMenu>
                 {openMenu === "productRedux" && (
                     <div>                      
                         <ButtonMenu onClick={() => {navigate('redux-entry', {state:{isUpdate:false}} )}} className=" w-full text-left py-[16px] px-[36px]
-                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 2]Product Entry</ButtonMenu>
+                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">Product Entry</ButtonMenu>
                         <ButtonMenu onClick={() => {navigate('redux-list')}} className="block w-full text-left py-[16px] px-[36px] 
-                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">[FE 2]Product List </ButtonMenu>
+                        hover:bg-secondary-sidebar bg-secondary-sidebar-hover">Product List </ButtonMenu>
                     </div>
                 )}
 
-                <ButtonMenu onClick={() => toggleMenu("productApi") } className={`w-full text-left py-[16px] pl-[36px] pr-[16px] ${openMenu === "productApi" ? "bg-secondary-sidebar" : "hover:bg-secondary-sidebar"} 
+                <ButtonMenu onClick={() => toggleMenu("productApi") } className={`hidden w-full text-left py-[16px] pl-[36px] pr-[16px] ${openMenu === "productApi" ? "bg-secondary-sidebar" : "hover:bg-secondary-sidebar"} 
                 flex justify-between`}>Advanced FE 1<span>{openMenu === "productApi" ? 
                 <img src={upLogo} alt="Up" /> : 
                 <img src={bottomLogo} alt="Down" />}</span>                 
