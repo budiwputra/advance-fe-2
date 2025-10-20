@@ -41,7 +41,7 @@ const Card = () => {
 
             {(!isLoading && !isError) && (
                 <div>
-                    <div className='flex flex-row justify-between gap-[12px]'>
+                    <div className='flex flex-row justify-between mb-5'>
                         {/* <button className='border rounded-sm p-1 cursor-pointer hover:text-primary'
                         onClick={() => navigate('/dashboard/entry-product')}>Add Product</button> */}                      
                         <Button onClick={() => navigate('/dashboard/redux-entry') } >Add Product</Button>
